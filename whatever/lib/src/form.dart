@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import '../styles/colors.dart';
 
 class FormWidgetsDemo extends StatefulWidget {
   const FormWidgetsDemo({Key? key}) : super(key: key);
@@ -62,7 +63,12 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
-        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+        ElevatedButton.styleFrom(
+          padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 24.0, bottom: 24.0),
+          primary: NNColors.orange500,
+          textStyle: const TextStyle(fontSize: 20),
+        );
+
     final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter(
       locale: 'nl',
       decimalDigits: 2,
@@ -71,7 +77,10 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Depot Declaration'),
+        backgroundColor: NNColors.white,
+        title: const Text('Depot Declaration', style: (
+            TextStyle(color: NNColors.grey800)
+        )),
       ),
       body: Form(
         key: _formKey,
@@ -90,7 +99,7 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                       ...[
                         TextFormField(
                           decoration: const InputDecoration(
-                            filled: true,
+                            filled: false,
                             hintText: 'Het minimale bedrag is € 1,00',
                             labelText: 'Hoeveel wil je declareren?',
                           ),
@@ -119,8 +128,10 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            filled: true,
+                            border: OutlineInputBorder(
+
+                            ),
+                            filled: false,
                             hintText: 'Enter a description..',
                             labelText: 'Description',
                           ),
@@ -157,6 +168,9 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                               style: Theme.of(context).textTheme.subtitle1,
                             ),
                             Slider(
+                              activeColor: NNColors.orange500,
+                              thumbColor: NNColors.orange300,
+                              inactiveColor: NNColors.grey200,
                               min: 0,
                               max: 500,
                               divisions: 500,
@@ -272,7 +286,11 @@ class _FormDatePickerState extends State<_FormDatePicker> {
           ],
         ),
         TextButton(
-          child: const Text('Edit'),
+          child: const Text('Edit',
+              style: TextStyle(
+              color: NNColors.orange700,
+              decorationColor: NNColors.black,
+              )),
           onPressed: () async {
             var newDate = await showDatePicker(
               context: context,

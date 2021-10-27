@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Colors {
+class NNColors {
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xff000000);
   static const orange00 = Color(0xfffff7ee);
