@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 class FormWidgetsDemo extends StatefulWidget {
   const FormWidgetsDemo({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class FormWidgetsDemo extends StatefulWidget {
 class _FormWidgetsDemoState extends State<FormWidgetsDemo>
     with TickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
+  double amount = 0;
   String title = '';
   String description = '';
   DateTime date = DateTime.now();
@@ -60,6 +63,11 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
   Widget build(BuildContext context) {
     final ButtonStyle style =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+    final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter(
+      locale: 'nl',
+      decimalDigits: 2,
+      symbol: '€',
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -80,6 +88,23 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ...[
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            filled: true,
+                            hintText: 'Het minimale bedrag is € 1,00',
+                            labelText: 'Hoeveel wil je declareren?',
+                          ),
+                          initialValue: _formatter.format('2000'),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            _formatter,
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              amount = value as double;
+                            });
+                          },
+                        ),
                         TextFormField(
                           decoration: const InputDecoration(
                             filled: true,
