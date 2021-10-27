@@ -37,7 +37,7 @@ dependencies:
   intl: ^0.17.0
   currency_text_input_formatter: ^2.1.5
 
-  graphql: ^4.0.0-beta
+  graphql: ^5.0.0
 
 dev_dependencies:
   flutter_test:
