@@ -51,10 +51,13 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
   void _startLoading() async {
 
     var ss = new SupplierService();
-    ss.getSuppliers();
-
+    var suppliers = ss.getSuppliers();
+    
+    var thing = await suppliers.toString();
+print(thing);
     setState(() {
       _isLoading = true;
+      title = thing;
     });
 
     // Wait for 3 seconds
@@ -63,7 +66,9 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
 
     setState(() {
       _isLoading = false;
+      title = thing.toString();
     });
+    print(title);
   }
 
   @override

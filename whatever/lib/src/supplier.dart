@@ -20,7 +20,7 @@ class SupplierService {
     link: HttpLink('http://127.0.0.1:8080/graphql',),
   );
 
-  void getSuppliers() async {
+  Future<String> getSuppliers() async {
     final QueryOptions options = QueryOptions(
       document: gql(allSuppliers)
     );
@@ -33,7 +33,7 @@ class SupplierService {
 
     print(result.data.toString());
 
-    return;
+    return result.data.toString();
   }
 }
 
