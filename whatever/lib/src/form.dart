@@ -14,7 +14,7 @@ class FormWidgetsDemo extends StatefulWidget {
 class _FormWidgetsDemoState extends State<FormWidgetsDemo>
     with TickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
-  double amount = 0;
+  num amount = 0;
   String title = '';
   String description = '';
   DateTime date = DateTime.now();
@@ -69,7 +69,7 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
           textStyle: const TextStyle(fontSize: 20),
         );
 
-    final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter(
+    final CurrencyTextInputFormatter amountFormatter = CurrencyTextInputFormatter(
       locale: 'nl',
       decimalDigits: 2,
       symbol: '€',
@@ -98,19 +98,24 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                     children: [
                       ...[
                         TextFormField(
-                          decoration: const InputDecoration(
-                            filled: false,
+                            autovalidateMode: AutovalidateMode.always, decoration: const InputDecoration(
+                            filled: true,
                             hintText: 'Het minimale bedrag is € 1,00',
                             labelText: 'Hoeveel wil je declareren?',
                           ),
-                          initialValue: _formatter.format('2000'),
+                          initialValue: amountFormatter.format('0'),
                           keyboardType: TextInputType.number,
                           inputFormatters: [
-                            _formatter,
+                            amountFormatter,
                           ],
+                          validator: (value) {
+                            return value!.isEmpty
+                                ? 'required'
+                                : null;
+                          },
                           onChanged: (value) {
                             setState(() {
-                              amount = value as double;
+                              amount = value.isEmpty ? 0 : amountFormatter.getUnformattedValue();
                             });
                           },
                         ),
