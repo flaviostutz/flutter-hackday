@@ -17,6 +17,7 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
   num amount = 0;
   String title = '';
   String description = '';
+  String transferType = '';
   DateTime date = DateTime.now();
   double maxValue = 0;
   bool? brushedTeeth = false;
@@ -119,6 +120,40 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                                   : amountFormatter.getUnformattedValue();
                             });
                           },
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Radio<String>(
+                              value: 'Personal',
+                              groupValue: transferType,
+                              onChanged: (value) {
+                                setState(() {
+                                  transferType = value as String;
+                                });
+                              },
+                            ),
+                            Text('Mijzelf',
+                                style: Theme.of(context).textTheme.subtitle1),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Radio<String>(
+                              value: 'Supplier',
+                              groupValue: transferType,
+                              onChanged: (value) {
+                                setState(() {
+                                  transferType = value as String;
+                                });
+                              },
+                            ),
+                            Text('Leverancier',
+                                style: Theme.of(context).textTheme.subtitle1),
+                          ],
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
