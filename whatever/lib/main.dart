@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'supplier.dart';
 import 'src/form.dart';
 
 void main() {
   runApp(const MyApp());
-
-  var ss = new SupplierService();
-  ss.getSuppliers();
 }
 
 class MyApp extends StatelessWidget {

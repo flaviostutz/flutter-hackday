@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'supplier.dart';
 import '../styles/colors.dart';
 
 class FormWidgetsDemo extends StatefulWidget {
@@ -48,6 +49,10 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
 
   // This function will be triggered when the button is pressed
   void _startLoading() async {
+
+    var ss = new SupplierService();
+    ss.getSuppliers();
+
     setState(() {
       _isLoading = true;
     });

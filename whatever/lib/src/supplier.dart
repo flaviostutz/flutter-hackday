@@ -22,7 +22,7 @@ class SupplierService {
 
   void getSuppliers() async {
     final QueryOptions options = QueryOptions(
-      document: gql(allSuppliers),
+      document: gql(allSuppliers)
     );
 
     final QueryResult result = await client.query(options);
