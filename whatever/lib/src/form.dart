@@ -62,14 +62,15 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style =
-        ElevatedButton.styleFrom(
-          padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 24.0, bottom: 24.0),
-          primary: NNColors.orange500,
-          textStyle: const TextStyle(fontSize: 20),
-        );
+    final ButtonStyle style = ElevatedButton.styleFrom(
+      padding: const EdgeInsets.only(
+          left: 12.0, right: 12.0, top: 24.0, bottom: 24.0),
+      primary: NNColors.orange500,
+      textStyle: const TextStyle(fontSize: 20),
+    );
 
-    final CurrencyTextInputFormatter amountFormatter = CurrencyTextInputFormatter(
+    final CurrencyTextInputFormatter amountFormatter =
+        CurrencyTextInputFormatter(
       locale: 'nl',
       decimalDigits: 2,
       symbol: '€',
@@ -78,9 +79,8 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: NNColors.white,
-        title: const Text('Depot Declaration', style: (
-            TextStyle(color: NNColors.grey800)
-        )),
+        title: const Text('Depot Declaration',
+            style: (TextStyle(color: NNColors.grey800))),
       ),
       body: Form(
         key: _formKey,
@@ -98,7 +98,8 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                     children: [
                       ...[
                         TextFormField(
-                            autovalidateMode: AutovalidateMode.always, decoration: const InputDecoration(
+                          autovalidateMode: AutovalidateMode.always,
+                          decoration: const InputDecoration(
                             filled: true,
                             hintText: 'Het minimale bedrag is € 1,00',
                             labelText: 'Hoeveel wil je declareren?',
@@ -109,13 +110,13 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                             amountFormatter,
                           ],
                           validator: (value) {
-                            return value!.isEmpty
-                                ? 'required'
-                                : null;
+                            return value!.isEmpty ? 'required' : null;
                           },
                           onChanged: (value) {
                             setState(() {
-                              amount = value.isEmpty ? 0 : amountFormatter.getUnformattedValue();
+                              amount = value.isEmpty
+                                  ? 0
+                                  : amountFormatter.getUnformattedValue();
                             });
                           },
                         ),
@@ -133,9 +134,7 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo>
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-
-                            ),
+                            border: OutlineInputBorder(),
                             filled: false,
                             hintText: 'Enter a description..',
                             labelText: 'Description',
@@ -293,8 +292,8 @@ class _FormDatePickerState extends State<_FormDatePicker> {
         TextButton(
           child: const Text('Edit',
               style: TextStyle(
-              color: NNColors.orange700,
-              decorationColor: NNColors.black,
+                color: NNColors.orange700,
+                decorationColor: NNColors.black,
               )),
           onPressed: () async {
             var newDate = await showDatePicker(
